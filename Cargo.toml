@@ -1,0 +1,30 @@
+[package]
+name = "replane"
+version = "0.1.0"
+edition = "2021"
+description = "Rust SDK for Replane - dynamic configuration with real-time updates"
+license = "MIT"
+repository = "https://github.com/replane-dev/replane-rust"
+homepage = "https://replane.dev"
+readme = "README.md"
+keywords = ["replane", "config", "feature-flags", "remote-config"]
+categories = ["config", "web-programming::http-client"]
+exclude = ["/.github", "/scripts"]
+
+[features]
+default = ["rustls-tls"]
+rustls-tls = ["reqwest/rustls-tls"]
+native-tls = ["reqwest/native-tls"]
+
+[dependencies]
+fastrand = "2"
+futures-util = { version = "0.3", default-features = false, features = ["std"] }
+reqwest = { version = "0.12", default-features = false, features = ["stream", "json", "http2"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["rt", "sync", "time"] }
+tracing = "0.1"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }
